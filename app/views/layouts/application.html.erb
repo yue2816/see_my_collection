@@ -23,21 +23,31 @@
           <div>
             <!--管理者ログイン後ヘッダー-->
             <% if admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
+              </li>
+            </ul>
 
             <!--ユーザーログイン後ヘッダー-->
             <% elsif user_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+              </li>
+            </ul>
 
             <!--ログイン前ヘッダー-->
             <% else %>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to "About", homes_about_path, class: 'nav-link text-dark' %>
+                <%= link_to "About", homes_about_path, class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                <%= link_to "新規登録", new_user_registration_path, class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                <%= link_to "ログイン", new_user_session_path, class:'nav-link text-dark' %>
               </li>
             </ul>
             <% end %>
