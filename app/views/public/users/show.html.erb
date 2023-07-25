@@ -1,0 +1,18 @@
+<h1>ユーザー詳細ページ</h1>
+
+<h3>ユーザー詳細</h3>
+<%= image_tag @user.get_image(250,250) %>
+
+<p>名前　<%= @user.name %></p>
+<p>自己紹介文　<%= @user.introduction %></p>
+<p>コレクションしている物　<%= @user.my_collection %></p>
+<%= link_to "編集する", edit_user_path(@user.id) %>
+
+<br>
+<br>
+
+<h3>投稿したもの一覧</h3>
+<% @posts.each do |post| %>
+  <%= image_tag post.get_post_image(150,150) %>
+  <p><%= post.title %></p>
+<% end %>

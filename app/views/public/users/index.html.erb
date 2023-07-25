@@ -1,0 +1,12 @@
+<h1>ユーザー一覧ページ</h1>
+
+<% @users.each do |user| %>
+  <div class="card" style="width: 18rem;">
+    <%= link_to user_path(user.id) do %>
+      <%= image_tag user.get_image(200,200), class:"card-img-top" %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= user.name %></h5>
+    </div>
+  </div>
+<% end %>
