@@ -1,0 +1,16 @@
+<h1>投稿編集ページ</h1>
+
+<%= form_with model: @post do |f| %>
+  <h4>画像</h4>
+  <%= f.file_field :post_image, accept: "image/*" %>
+
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+
+  <h4>説明</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit '編集を保存' %>
+<% end %>
+
+<%= link_to "投稿を削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
