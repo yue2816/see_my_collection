@@ -1,6 +1,11 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    # 検索wordが存在するかしないかの
+    if params[:word].present?
+      @posts = Post.looks(params[:search], params[:word])
+    else
+      @posts = Post.all
+    end
   end
 
   def new

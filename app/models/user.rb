@@ -7,6 +7,19 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :post, dependent: :destroy
 
+  # 検索方法分岐
+  def self.looks(search, word)
+    # 完全一致
+    if search == "perfect_match"
+      @user = User.where("title LIKE?","#{word}")
+    # 部分一致
+    elsif search == "partial_match"
+      @user = User.where("title LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+
   # ユーザー画像をリサイズ、初期はno_imageを設定するメソッド
   def get_image(width, height)
     unless image.attached?

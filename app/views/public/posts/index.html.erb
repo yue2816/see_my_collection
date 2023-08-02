@@ -1,10 +1,20 @@
 <h1>投稿一覧ページ</h1>
 
 <%= link_to "新規投稿ページ", new_post_path %>
+
+<div class="search_form">
+  <%= form_with url: posts_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word, placeholder:"タイトル名" %>
+    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <br>
 <br>
+<div class="row row-cols-1 row-cols-md-4 g-4">
 <% @posts.each do |post| %>
-  <div class="card" style="width: 18rem;">
+  <div class="card h-100">
     <%= link_to post_path(post.id) do %>
       <%= image_tag post.post_image, class:"card-img-top" %>
     <% end %>
@@ -14,3 +24,4 @@
     </div>
   </div>
 <% end %>
+</div>

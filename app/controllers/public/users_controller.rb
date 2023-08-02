@@ -1,6 +1,11 @@
 class Public::UsersController < ApplicationController
   def index
-    @users = User.all
+    # 検索wordが存在するかしないかの分岐
+    if params[:word].present?
+      @users = User.looks(params[:search], params[:word])
+    else
+      @users = User.all
+    end
   end
 
   def show

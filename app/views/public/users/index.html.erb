@@ -1,12 +1,22 @@
 <h1>ユーザー一覧ページ</h1>
 
+<div class="search_form">
+  <%= form_with url: users_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word, placeholder:"ユーザー名" %>
+    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
 <% @users.each do |user| %>
-  <div class="card" style="width: 18rem;">
+  <div class="card h-100">
     <%= link_to user_path(user.id) do %>
-      <%= image_tag user.get_image(200,200), class:"card-img-top" %>
+      <%= image_tag user.image, class:"card-img-top" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= user.name %></h5>
     </div>
   </div>
 <% end %>
+</div>
