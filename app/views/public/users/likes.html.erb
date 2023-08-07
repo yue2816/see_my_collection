@@ -1,0 +1,15 @@
+<h1>いいね一覧</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+<% @like_posts.each do |post|%>
+  <div class="card h-100">
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.post_image, class:"card-img-top" %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text">投稿者名　<%= post.user.name %></p>
+    </div>
+  </div>
+<% end %>
+</div>
