@@ -1,0 +1,29 @@
+<div class="container mt-3">
+  <h3>ユーザーステータス変更画面</h3>
+
+  <p>ID　<%= @user.id %></p>
+  <p>名前　<%= @user.name %></p>
+
+  <%= form_with model: @user, url: "/admin/users/#{@user.id}" do |f| %>
+  <form>
+    <div class="form-group row">
+      <div class="col-lg-2">
+        <label>会員ステータス</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_deleted, :false, class:"form-check-input" %>
+        <label class="form-check-label" for="inlineRadio1">有効</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= f.radio_button :is_deleted, :true, class:"form-check-input" %>
+        <label class="form-check-label" for="inlineRadio2">停止</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <%= f.submit '変更を保存', class:"btn btn-block btn-success col-2" %>
+      <div class="col-lg-8"></div>
+    </div>
+  </form>
+  <% end %>
+</div>

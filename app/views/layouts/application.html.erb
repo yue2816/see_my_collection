@@ -25,6 +25,9 @@
             <% if admin_signed_in? %>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
+                <%= link_to "ユーザー一覧", admin_homes_top_path, class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
               </li>
             </ul>

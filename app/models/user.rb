@@ -43,6 +43,19 @@ class User < ApplicationRecord
     end
   end
 
+  def user_status
+    if is_deleted == true
+      "停止"
+    else
+      "有効"
+    end
+  end
+
+  # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   # ユーザー画像をリサイズ、初期はno_imageを設定するメソッド
   def get_image(width, height)
     unless image.attached?
