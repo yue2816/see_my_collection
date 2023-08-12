@@ -42,6 +42,12 @@
                 <%= link_to "いいね一覧", likes_user_path(current_user.id), class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
+                <%= link_to "フォロワー一覧", user_followers_path(current_user.id), class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "フォロー一覧", user_followings_path(current_user.id), class:'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
               </li>
             </ul>

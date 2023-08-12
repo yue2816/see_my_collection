@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   # 管理者側のdeviseのルーティング
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -19,8 +23,12 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :users, only: [:index, :edit, :update, :show] do
+      # フォローのルーティング
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+      # いいね一覧のルーティング、id含む
       member do
-        # いいね一覧のルーティング、id含む
         get :likes
       end
     end
