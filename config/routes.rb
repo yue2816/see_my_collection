@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     resources :posts do
       resource :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :users, only: [:index, :edit, :update, :show] do
       member do

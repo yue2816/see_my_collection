@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # 検索方法分岐
   def self.looks(search, word)

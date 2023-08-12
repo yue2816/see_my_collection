@@ -19,4 +19,14 @@
   </p>
 <% end %>
 
+<%= form_with model:[@post, @comment], local: false do |f| %>
+  <%= f.text_area :comment_content, rows:'2', placeholder: "コメントを記入", class:"form-control mt-3" %>
+  <%= f.submit "送信", class: "btn btn-primary mt-3 mb-3" %>
+<% end %>
+
+<% @post_comments.each do |comment| %>
+  <%= comment.comment_content %>
+  <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
+<% end %>
+<br>
 <%= link_to "編集ページ", edit_post_path(@post.id) %>

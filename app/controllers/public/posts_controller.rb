@@ -21,6 +21,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comments = @post.comments
+    @comment = Comment.new
   end
 
   def edit
