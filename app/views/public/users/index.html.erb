@@ -12,7 +12,7 @@
 <% @users.each do |user| %>
   <div class="card h-100">
     <%= link_to user_path(user.id) do %>
-      <%= image_tag user.image, class:"card-img-top" %>
+      <%= image_tag user.get_image(300,300), class:"card-img-top" %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= user.name %></h5>
