@@ -1,5 +1,32 @@
-<h1>TOPページ</h1>
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-lg-4">
+      <%= image_tag "stamps-1218502_1280.jpg", class:"img-fluid" %>
+    </div>
+    <div class="col-lg-4">
+      <%= image_tag "silk-tie-2846862_1280.jpg", class:"img-fluid" %>
+    </div>
+    <div class="col-lg-4">
+      <%= image_tag "mche-lee-e4M0m4_6qro-unsplash.jpg", class:"img-fluid" %>
+    </div>
+  </div>
 
-<%= link_to "新規登録", new_user_registration_path %>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to 'ゲストログイン（閲覧用）', public_guest_sign_in_path, method: :post %>
+  <div class="text-center pt-3">
+    <h1>
+      <i class="fa-solid fa-shapes"></i>
+      See My Collection!
+    </h1>
+    <h3>あなたのコレクションを投稿してみよう！</h3>
+    <div class="pt-3">
+      <%= link_to new_user_registration_path, class:"btn btn-success col-lg-3" do %>
+        <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i>
+        新規登録
+      <% end %>
+      <%= link_to new_user_session_path, class:"btn btn-primary col-lg-3" do %>
+        <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>
+        ログイン
+      <% end %>
+    </div>
+    <%= link_to 'ゲストログイン（閲覧用）', public_guest_sign_in_path, method: :post, class:"btn btn-secondary col-lg-3 mt-2" %>
+  </div>
+</div>
