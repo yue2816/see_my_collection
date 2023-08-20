@@ -39,16 +39,16 @@
             <% elsif user_signed_in? %>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to "投稿一覧", posts_path, class:'nav-link text-dark' %>
+                <%= link_to posts_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-book-open"></i>
+                  投稿一覧
+                <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to "ユーザー一覧", users_path, class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "いいね一覧", likes_user_path(current_user.id), class:'nav-link text-dark' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "フォロワー一覧", user_followers_path(current_user.id), class:'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "フォロー一覧", user_followings_path(current_user.id), class:'nav-link text-dark' %>
