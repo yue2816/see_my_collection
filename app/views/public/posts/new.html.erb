@@ -1,14 +1,24 @@
-<h1>新規投稿ページ</h1>
+<div class="container pt-3">
+  <h3 class="pb-2">新規投稿ページ</h3>
 
-<%= form_with model: @post do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :post_image, accept: "image/*" %>
+  <%= form_with model: @post do |f| %>
+  <form>
+    <div class="form-group">
+      <label>画像</label><br>
+      <%= f.file_field :post_image, accept: "image/*" %>
+    </div>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+    <div class="form-group">
+      <label>タイトル</label><br>
+      <%= f.text_field :title, class:"form-control col-lg-6" %>
+    </div>
 
-  <h4>説明</h4>
-  <%= f.text_area :body %>
+    <div class="form-group">
+      <label>説明</label><br>
+      <%= f.text_area :body, class:"form-control col-lg-6", rows:"3" %>
+    </div>
 
-  <%= f.submit '投稿' %>
-<% end %>
+    <%= f.submit '投稿', class:"btn btn-success col-lg-2 mt-2" %>
+  </form>
+  <% end %>
+</div>
