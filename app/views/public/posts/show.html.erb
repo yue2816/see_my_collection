@@ -1,7 +1,7 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-lg-3">
-      <h3>投稿者</h3>
+      <h3><i class="fa-solid fa-user"></i> 投稿者</h3>
       <div class="text-center pt-2 pb-3">
         <%= link_to user_path(@post.user.id) do %>
           <%= image_tag @post.user.image, class:"w-75 rounded-circle" %>
@@ -21,38 +21,59 @@
     </div>
 
     <div class="col-lg-9">
-      <h3>投稿詳細</h3>
+      <h3><i class="fa-solid fa-book-open"></i> 投稿詳細</h3>
+      <div class="row pt-2 border-bottom pb-5">
+        <div class="col-lg-4">
+          <%= image_tag @post.post_image, class:"w-100" %>
+        </div>
 
-      <%= image_tag @post.get_post_image(250,250) %>
+        <div class="col-lg-8">
+          <h6 class="pt-2 border-bottom pb-2"><strong>タイトル</strong>　<%= @post.title %></h6>
+          <p class="pt-1"><%= @post.body %></p>
 
-      <p>タイトル　<%= @post.title %></p>
-      <p>説明　<%= @post.body %></p>
-
-      <% if @post.liked_by?(current_user) %>
-        <p>
-          <%= link_to post_likes_path(@post.id), method: :delete do %>
-            ♥<%= @post.likes.count %> いいね
+          <% if @post.liked_by?(current_user) %>
+            <p>
+              <%= link_to post_likes_path(@post.id), method: :delete, class:"text-reset" do %>
+                <i class="fa-solid fa-heart" style="color: #ff0000;"></i>
+                <%= @post.likes.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_likes_path(@post.id), method: :post, class:"text-reset" do %>
+                <i class="fa-regular fa-heart" style="color: #ff0000;"></i>
+                <%= @post.likes.count %> いいね
+              <% end %>
+            </p>
           <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to post_likes_path(@post.id), method: :post do %>
-            ♡<%= @post.likes.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
+          <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-success btn-sm" %>
+        </div>
+      </div>
 
+      <h3 class="pt-2"><i class="fa-solid fa-pen"></i> コメント</h3>
       <%= form_with model:[@post, @comment], local: false do |f| %>
-        <%= f.text_area :comment_content, rows:'2', placeholder: "コメントを記入", class:"form-control mt-3" %>
-        <%= f.submit "送信", class: "btn btn-primary mt-3 mb-3" %>
+        <%= f.text_area :comment_content, rows:'2', placeholder: "コメントを記入", class:"form-control mt-3 col-lg-8" %>
+        <%= f.submit "送信", class: "btn btn-primary btn-sm mt-3 mb-3 col-lg-2" %>
       <% end %>
 
-      <% @post_comments.each do |comment| %>
-        <%= comment.comment_content %>
-        <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
-      <% end %>
-      <br>
-      <%= link_to "編集ページ", edit_post_path(@post.id) %>
+      <div class="pt-2">
+        <% @post_comments.each do |comment| %>
+          <div class="row">
+            <div class="col-lg-1">
+              <%= image_tag comment.user.image, class:"rounded-circle ml-2 w-100" %>
+            </div>
+            <div class="col-lg-6">
+              <p>
+                <%= comment.comment_content %><br>
+                <i class="fa-solid fa-user"></i> <%= comment.user.name %>
+              </p>
+            </div>
+            <div class="col-lg-5">
+              <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

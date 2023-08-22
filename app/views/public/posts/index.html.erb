@@ -26,6 +26,7 @@
       <% end %>
     </div>
   </div>
+
   <div class="row">
   <% @posts.each do |post| %>
   <div class="col-lg-4 my-2">
@@ -38,7 +39,9 @@
           <%= image_tag post.user.get_image(47,47), class:"rounded-circle ml-2" %>
         </div>
         <div class="col-lg-9">
-          <%= post.title %>
+          <div class="text-truncate">
+            <%= post.title %>
+          </div>
           <p>
             <i class="fa-solid fa-user"></i>
             <%= post.user.name %> |

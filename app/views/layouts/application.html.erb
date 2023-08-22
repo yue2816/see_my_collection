@@ -45,7 +45,10 @@
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ユーザー一覧", users_path, class:'nav-link text-dark' %>
+                <%= link_to users_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-user"></i>
+                  ユーザー一覧
+                <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to "いいね一覧", likes_user_path(current_user.id), class:'nav-link text-dark' %>
