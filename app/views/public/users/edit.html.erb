@@ -1,17 +1,28 @@
-<h1>ユーザー編集ページ</h1>
+<div class="container pt-3">
+  <h3 class="pb-2">ユーザー編集ページ</h3>
 
-<%= form_with model: @user do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+  <%= form_with model: @user do |f| %>
+    <form>
+      <div class="form-group">
+        <label>画像</label><br>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
 
-  <h4>名前</h4>
-  <%= f.text_field :name %>
+      <div class="form-group">
+        <label>名前</label><br>
+        <%= f.text_field :name, class:"form-control col-lg-6" %>
+      </div>
 
-  <h4>自己紹介文</h4>
-  <%= f.text_area :introduction %>
+      <div class="form-group">
+        <label>自己紹介文</label><br>
+        <%= f.text_area :introduction, class:"form-control col-lg-6", rows:"3" %>
+      </div>
 
-  <h4>コレクションしている物</h4>
-  <%= f.text_area :my_collection %>
-
-  <%= f.submit '編集を保存' %>
-<% end %>
+      <div class="form-group">
+        <label>コレクションしている物</label><br>
+        <%= f.text_area :my_collection, class:"form-control col-lg-6" %>
+      </div>
+    </form>
+    <%= f.submit '編集を保存', class:"btn btn-success col-lg-2 mt-2 mr-5" %>
+  <% end %>
+</div>

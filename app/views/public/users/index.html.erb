@@ -23,7 +23,8 @@
           <%= link_to user_path(user.id) do %>
             <%= image_tag user.get_image(300,300), class:"rounded-circle w-100 pb-3" %>
           <% end %>
-          <%= user.name %>
+          <h6><i class="fa-solid fa-user"></i> <%= user.name %></h6>
+          <h6>集めている物 <%= user.my_collection %></h6>
         </div>
       </div>
     <% end %>

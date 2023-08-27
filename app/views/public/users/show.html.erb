@@ -1,25 +1,52 @@
-<h1>ユーザー詳細ページ</h1>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3><i class="fa-solid fa-user"></i> 投稿者</h3>
+      <div class="text-center pt-2 pb-3">
+        <%= link_to user_path(@user.id) do %>
+          <%= image_tag @user.image, class:"w-75 rounded-circle" %>
+        <% end %>
+      </div>
+      <div class="border-bottom">
+        <h6><strong>名前</strong>　<%= @user.name %></h6>
+      </div>
+      <div class="border-bottom pt-3">
+        <h6><strong>自己紹介</strong></h6>
+        <p><%= @user.introduction %></p>
+      </div>
+      <div class="border-bottom pt-3">
+        <h6><strong>コレクションしている物</strong></h6>
+        <p><%= @user.my_collection %></p>
+      </div>
+      <% if current_user.following?(@user) %>
+        <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class:"btn btn-sm btn-danger mt-3" %>
+      <% else %>
+        <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class:"btn btn-sm btn-primary mt-3" %>
+      <% end %>
+      <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-sm btn-success ml-1 mt-3" %>
+    </div>
 
-<h3>ユーザー詳細</h3>
-<%= image_tag @user.get_image(250,250) %>
-
-<p>名前　<%= @user.name %></p>
-<p>自己紹介文　<%= @user.introduction %></p>
-<p>コレクションしている物　<%= @user.my_collection %></p>
-
-<% if current_user.following?(@user) %>
-  <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class:"btn-sm btn-danger" %>
-<% else %>
-  <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn-sm btn-primary" %>
-<% end %>
-<br>
-<%= link_to "編集する", edit_user_path(@user.id) %>
-
-<br>
-<br>
-
-<h3>投稿したもの一覧</h3>
-<% @posts.each do |post| %>
-  <%= image_tag post.get_post_image(150,150) %>
-  <p><%= post.title %></p>
-<% end %>
+    <div class="col-lg-9">
+      <h3><i class="fa-solid fa-book-open"></i> 投稿したもの一覧</h3>
+      <table class="table">
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="col-lg-3">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag post.get_post_image(150,150) %>
+                <% end %>
+              </td>
+              <td class="col-lg-7">
+                <h5><%= post.title %></h5>
+                投稿日 <%= post.created_at.strftime('%Y/%m/%d') %><br>
+                <i class="fa-solid fa-heart" style="color: #ff0000;"></i><%= post.likes.count %> | <i class="fa-solid fa-pen"></i><%= post.comments.count %>
+              </td>
+              <td class="col-lg-2"><%= link_to "編集する", edit_post_path(post.id), class:"btn btn-sm btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
