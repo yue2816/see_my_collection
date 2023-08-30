@@ -1,28 +1,35 @@
 <div class="container pt-3">
   <h3 class="pb-2">ユーザー編集ページ</h3>
 
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= form_with model: @user do |f| %>
-    <form>
-      <div class="form-group">
-        <label>画像</label><br>
-        <%= f.file_field :image, accept: "image/*" %>
-      </div>
+    <div class="form-group">
+      <label>画像</label><br>
+      <%= f.file_field :image, accept: "image/*" %>
+    </div>
 
-      <div class="form-group">
-        <label>名前</label><br>
-        <%= f.text_field :name, class:"form-control col-lg-6" %>
-      </div>
+    <div class="form-group">
+      <label>名前</label><br>
+      <%= f.text_field :name, class:"form-control col-lg-6" %>
+    </div>
 
-      <div class="form-group">
-        <label>自己紹介文</label><br>
-        <%= f.text_area :introduction, class:"form-control col-lg-6", rows:"3" %>
-      </div>
+    <div class="form-group">
+      <label>自己紹介文</label><br>
+      <%= f.text_area :introduction, class:"form-control col-lg-6", rows:"3" %>
+    </div>
 
-      <div class="form-group">
-        <label>コレクションしている物</label><br>
-        <%= f.text_area :my_collection, class:"form-control col-lg-6" %>
-      </div>
-    </form>
+    <div class="form-group">
+      <label>コレクションしている物</label><br>
+      <%= f.text_area :my_collection, class:"form-control col-lg-6" %>
+    </div>
     <%= f.submit '編集を保存', class:"btn btn-success col-lg-2 mt-2 mr-5" %>
   <% end %>
 </div>

@@ -1,6 +1,15 @@
 <div class="container pt-3">
   <h3 class="pb-2">新規投稿ページ</h3>
 
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= form_with model: @post do |f| %>
   <form>
     <div class="form-group">

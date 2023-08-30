@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # バリデーション
+  validates :name, presence: true
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
@@ -62,9 +65,9 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [width, height]).processed
+    image.variant( resize: "#{width}x#{height}^", gravity: "center", crop: "#{width}x#{height}+0+0" ).processed
   end
-  
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64

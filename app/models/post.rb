@@ -4,6 +4,11 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  # バリデーション
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :post_image, presence: true
+
   # 検索方法分岐
   def self.looks(search, word)
     # 完全一致
@@ -24,6 +29,7 @@ class Post < ApplicationRecord
 
   # 投稿画像をリサイズするメソッド
   def get_post_image(width, height)
-    post_image.variant(resize_to_limit: [width, height]).processed
+    # post_image.variant(resize_to_limit: [width, height]).processed
+    post_image.variant( resize: "#{width}x#{height}^", gravity: "center", crop: "#{width}x#{height}+0+0" ).processed
   end
 end
