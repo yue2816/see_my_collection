@@ -51,13 +51,22 @@
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "いいね一覧", likes_user_path(current_user.id), class:'nav-link text-dark' %>
+                <%= link_to likes_user_path(current_user.id), class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-heart"></i>
+                  いいね一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "フォロー一覧", user_followings_path(current_user.id), class:'nav-link text-dark' %>
+                <%= link_to user_followings_path(current_user.id), class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-handshake-angle"></i>
+                  フォロー一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:'nav-link text-dark' %>
+                <%= link_to destroy_user_session_path, method: :delete, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  ログアウト
+                <% end %>
               </li>
             </ul>
 

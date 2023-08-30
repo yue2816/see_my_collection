@@ -1,24 +1,29 @@
-<h1>フォロー一覧</h1>
+<div class="container pt-3">
+  <h3 class="pb-2"><i class="fa-solid fa-handshake-angle"></i>フォロー一覧</h3>
 
-<% if @users.exists? %>
-  <% @users.each do |user| %>
-    <table>
-      <thead>
-        <tr>
-          <th>名前</th>
-          <th>フォロー数</th>
-          <th>フォロワー数</th>
-        </tr>
-      </thead>
+  <% if @users.exists? %>
+    <table class="table">
       <tbody>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.followings.count %></td>
-          <td><%= user.followers.count %></td>
-        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="col-lg-2">
+              <%= link_to user_path(user.id) do %>
+                <%= image_tag user.image, class:"w-100 rounded-circle" %>
+              <% end %>
+            </td>
+            <td class="col-lg-10">
+              <h5><%= user.name %></h5>
+              <h6><%= user.introduction %></h6>
+              <h6>コレクションしている物 : <%= user.my_collection %></h6>
+              <p>
+                フォロー数 <%= user.followings.count %>　|　フォロワー数 <%= user.followers.count %>
+              </p>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
+  <% else %>
+    <p>ユーザーはいません</p>
   <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+</div>
