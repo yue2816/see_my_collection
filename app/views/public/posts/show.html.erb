@@ -4,7 +4,7 @@
       <h3><i class="fa-solid fa-user"></i> 投稿者</h3>
       <div class="text-center pt-2 pb-3">
         <%= link_to user_path(@post.user.id) do %>
-          <%= image_tag @post.user.image, class:"w-75 rounded-circle" %>
+          <%= image_tag @post.user.get_image(300,300), class:"w-75 rounded-circle" %>
         <% end %>
       </div>
       <div class="border-bottom">
@@ -18,6 +18,14 @@
         <h6><strong>コレクションしている物</strong></h6>
         <p><%= @post.user.my_collection %></p>
       </div>
+      <% if current_user.following?(@post.user) %>
+        <%= link_to "フォロー解除", user_relationships_path(@post.user.id), method: :delete, class:"btn btn-sm btn-danger mt-3" %>
+      <% else %>
+        <%= link_to "フォロー", user_relationships_path(@post.user.id), method: :post, class:"btn btn-sm btn-primary mt-3" %>
+      <% end %>
+      <% if @post.user == current_user %>
+        <%= link_to "編集する", edit_user_path(@post.user.id), class:"btn btn-sm btn-success ml-1 mt-3" %>
+      <% end %>
     </div>
 
     <div class="col-lg-9">
@@ -46,7 +54,9 @@
               <% end %>
             </p>
           <% end %>
-          <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-success btn-sm" %>
+          <% if @post.user == current_user %>
+            <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-success btn-sm" %>
+          <% end %>
         </div>
       </div>
 
@@ -69,7 +79,9 @@
               </p>
             </div>
             <div class="col-lg-5">
-              <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
+              <% if @post.user == current_user %>
+                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
+              <% end %>
             </div>
           </div>
         <% end %>

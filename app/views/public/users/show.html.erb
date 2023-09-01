@@ -4,7 +4,7 @@
       <h3><i class="fa-solid fa-user"></i> 投稿者</h3>
       <div class="text-center pt-2 pb-3">
         <%= link_to user_path(@user.id) do %>
-          <%= image_tag @user.image, class:"w-75 rounded-circle" %>
+          <%= image_tag @user.get_image(300,300), class:"w-75 rounded-circle" %>
         <% end %>
       </div>
       <div class="border-bottom">
@@ -23,18 +23,20 @@
       <% else %>
         <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class:"btn btn-sm btn-primary mt-3" %>
       <% end %>
-      <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-sm btn-success ml-1 mt-3" %>
+      <% if @user == current_user %>
+        <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-sm btn-success ml-1 mt-3" %>
+      <% end %>
     </div>
 
     <div class="col-lg-9">
-      <h3><i class="fa-solid fa-book-open"></i> 投稿したもの一覧</h3>
+      <h3><i class="fa-solid fa-book-open"></i> <%= @user.name %>さんの投稿一覧</h3>
       <table class="table">
         <tbody>
           <% @posts.each do |post| %>
             <tr>
               <td class="col-lg-3">
                 <%= link_to post_path(post.id) do %>
-                  <%= image_tag post.get_post_image(150,150) %>
+                  <%= image_tag post.get_post_image(300,200), class:"w-100 pb-3" %>
                 <% end %>
               </td>
               <td class="col-lg-7">
@@ -42,7 +44,11 @@
                 投稿日 <%= post.created_at.strftime('%Y/%m/%d') %><br>
                 <i class="fa-solid fa-heart" style="color: #ff0000;"></i><%= post.likes.count %> | <i class="fa-solid fa-pen"></i><%= post.comments.count %>
               </td>
-              <td class="col-lg-2"><%= link_to "編集する", edit_post_path(post.id), class:"btn btn-sm btn-success" %></td>
+              <td class="col-lg-2">
+                <% if @user == current_user %>
+                  <%= link_to "編集する", edit_post_path(post.id), class:"btn btn-sm btn-success" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
