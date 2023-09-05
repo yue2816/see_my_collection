@@ -1,14 +1,18 @@
 <div class="container mt-3">
   <h3>ユーザーステータス変更画面</h3>
-
-  <p>ID　<%= @user.id %></p>
-  <p>名前　<%= @user.name %></p>
+  <div class="row">
+    <p class="col-lg-2"><strong>ID</strong></p>
+    <p class="col-lg-10"><%= @user.id %></p>
+  </div>
+  <div class="row">
+    <p class="col-lg-2"><strong>名前</strong></p>
+    <p class="col-lg-10"><%= @user.name %></p>
+  </div>
 
   <%= form_with model: @user, url: "/admin/users/#{@user.id}" do |f| %>
-  <form>
     <div class="form-group row">
       <div class="col-lg-2">
-        <label>会員ステータス</label>
+        <label><strong>会員ステータス</strong></label>
       </div>
       <div class="form-check form-check-inline">
         <%= f.radio_button :is_deleted, :false, class:"form-check-input" %>
@@ -22,8 +26,6 @@
     <div class="row">
       <div class="col-lg-2"></div>
       <%= f.submit '変更を保存', class:"btn btn-block btn-success col-2" %>
-      <div class="col-lg-8"></div>
     </div>
-  </form>
   <% end %>
 </div>

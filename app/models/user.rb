@@ -37,10 +37,10 @@ class User < ApplicationRecord
   def self.looks(search, word)
     # 完全一致
     if search == "perfect_match"
-      @user = User.where("title LIKE?","#{word}")
+      @user = User.where("name LIKE?","#{word}")
     # 部分一致
     elsif search == "partial_match"
-      @user = User.where("title LIKE?","%#{word}%")
+      @user = User.where("name LIKE?","%#{word}%")
     else
       @user = User.all
     end

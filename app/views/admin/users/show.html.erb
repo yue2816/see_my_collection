@@ -1,29 +1,48 @@
-<h3>ユーザー詳細</h3>
-<%= image_tag @user.get_image(250,250) %>
+<div class="container pt-3">
+  <h3>ユーザー詳細</h3>
+  <div class="row">
+    <div class="col-lg-3">
+      <%= image_tag @user.get_image(250,250), class:"w-100 rounded-circle" %>
+    </div>
 
-<p>名前　<%= @user.name %></p>
-<p>自己紹介文　<%= @user.introduction %></p>
-<p>コレクションしている物　<%= @user.my_collection %></p>
-<p>ステータス　<%= @user.user_status %></p>
+    <div class="col-lg-9">
+      <div class="row">
+        <h6 class="col-lg-3"><strong>名前</strong></h6>
+        <h6 class="col-lg-9"><%= @user.name %></h6>
+      </div>
+      <div class="row">
+        <h6 class="col-lg-3"><strong>自己紹介文</strong></h6>
+        <h6 class="col-lg-9"><%= @user.introduction %></h6>
+      </div>
+      <div class="row">
+        <h6 class="col-lg-3"><strong>コレクションしている物</strong></h6>
+        <h6 class="col-lg-9"><%= @user.my_collection %></h6>
+      </div>
+      <div class="row">
+        <h6 class="col-lg-3"><strong>ステータス</strong></h6>
+        <h6 class="col-lg-9"><%= @user.user_status %></h6>
+      </div>
+      <%= link_to "ステータスの編集", edit_admin_user_path(@user.id), class:"btn btn-success mt-2" %>
+    </div>
+  </div>
 
-<%= link_to "ステータスの編集", edit_admin_user_path(@user.id) %>
-
-<h3>投稿したもの一覧</h3>
-<table class="table">
-  <thead>
-    <tr class="table-secondary">
-      <th></th>
-      <th>タイトル</th>
-      <th>本文</th>
-    </tr>
-  </thead>
-  <% @posts.each do |post| %>
-    <tbody>
-      <tr>
-        <td><%= image_tag post.get_post_image(150,150) %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
+  <h3 class="mt-5 mb-3">投稿したもの一覧</h3>
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th></th>
+        <th>タイトル</th>
+        <th>本文</th>
       </tr>
-    </tbody>
-  <% end %>
-</table>
+    </thead>
+    <% @posts.each do |post| %>
+      <tbody>
+        <tr>
+          <td><%= image_tag post.get_post_image(120,120) %></td>
+          <td><%= post.title %></td>
+          <td><%= post.body %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>

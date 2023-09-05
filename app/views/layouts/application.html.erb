@@ -28,10 +28,16 @@
             <% if admin_signed_in? %>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to "ユーザー一覧", admin_homes_top_path, class:'nav-link text-dark' %>
+                <%= link_to admin_homes_top_path, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-user"></i>
+                  ユーザー一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:'nav-link text-dark' %>
+                <%= link_to destroy_admin_session_path, method: :delete, class:'nav-link text-dark' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  ログアウト
+                <% end %>
               </li>
             </ul>
 
