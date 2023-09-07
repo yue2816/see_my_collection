@@ -1,6 +1,4 @@
 <div class="container pt-3">
-  <%= flash[:notice] %>
-
   <div class="row">
     <div class="col-lg-6">
       <h2>
@@ -26,6 +24,8 @@
       <% end %>
     </div>
   </div>
+
+  <%= flash[:notice] %>
 
   <div class="row">
   <% @posts.each do |post| %>

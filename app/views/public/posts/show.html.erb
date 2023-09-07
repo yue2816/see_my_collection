@@ -70,7 +70,7 @@
         <% @post_comments.each do |comment| %>
           <div class="row">
             <div class="col-lg-1">
-              <%= image_tag comment.user.image, class:"rounded-circle ml-2 w-100" %>
+              <%= image_tag comment.user.get_image(200,200), class:"rounded-circle ml-2 w-100" %>
             </div>
             <div class="col-lg-6">
               <p>
