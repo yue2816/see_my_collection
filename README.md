@@ -20,7 +20,9 @@
 - 見たいコレクションを検索する時
 
 #### 設計書
-後ほど作成予定
+- テーブル定義書URL:https://docs.google.com/spreadsheets/d/1aH-7vZxxbl88goA6gL1XrwzbyG1iZRiIb2n9etdgXT0/edit#gid=1243549839
+- アプリケーション詳細設計書URL:https://docs.google.com/spreadsheets/d/1ng-7LWmEMQL1qgziLR2X_PgnYzV3sd63-77BBlMx7cw/edit#gid=549108681
+- ER図URL:https://app.diagrams.net/#G1pAnJzdw3YFi09E07uHc7WH8i1Ysct1uQ
 - 実装機能リストURL:https://docs.google.com/spreadsheets/d/1JY74ygeV09HVz-CkuGifEp8JurYCzCuOgOTksVjs0yY/edit#gid=1091086188
 
 #### 開発環境
@@ -29,3 +31,8 @@
 - フレームワーク:Ruby on Rails
 - JSライブラリ:jQuery
 - IDE:Cloud9
+
+#### 使用素材
+- フリー写真素材として以下を使用
+ - ぱくたそ（https://www.pakutaso.com）
+ - O-DAN（https://o-dan.net/ja）
