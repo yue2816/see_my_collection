@@ -5,6 +5,8 @@
     新規ユーザー登録
   </h3>
 
+  <%= flash[:notice] %>
+
   <%= form_with model: @user, url: registration_path(resource_name) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
     <div class="form-group">

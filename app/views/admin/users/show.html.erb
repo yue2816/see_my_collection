@@ -33,6 +33,7 @@
         <th></th>
         <th>タイトル</th>
         <th>本文</th>
+        <th></th>
       </tr>
     </thead>
     <% @posts.each do |post| %>
@@ -41,6 +42,7 @@
           <td><%= image_tag post.get_post_image(120,120) %></td>
           <td><%= post.title %></td>
           <td><%= post.body %></td>
+          <td><%= link_to "削除", admin_post_path(post.id), method: :delete, class:"btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
         </tr>
       </tbody>
     <% end %>
